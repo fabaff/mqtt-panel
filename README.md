@@ -5,6 +5,8 @@ the information.
 
 ![screenshot](https://raw.github.com/fabaff/mqtt-panel/master/screenshot.png)
 
+What to see `mqtt-panel` in action -> http://youtu.be/Qb0UJa9kf2g
+
 The web page is using [bootstrap](http://getbootstrap.com/).
 
 ## Prerequisites/Installation
@@ -44,11 +46,10 @@ A MQTT broker/server is needed to run on **localhost** on port **1883**.
 
 ## Credits
 
+`mqtt-panel` was insired by the ideas of:
+
 * [mqtt-svg-dash](https://github.com/jpmens/mqtt-svg-dash) by [Jan-Piet Mens](http://jpmens.net/)
-
-* The `socket.io` example for Node (`pusher.js`) and some bits of `corp.html` are by [Robert Hekkers](http://blog.hekkers.net/2012/10/13/realtime-data-with-mqtt-node-js-mqtt-js-and-socket-io/)
-
-
+* [Robert Hekkers](http://blog.hekkers.net/2012/10/13/realtime-data-with-mqtt-node-js-mqtt-js-and-socket-io/)
 
 ## License
 `mqtt-panel` licensed under MIT, for more details check LICENSE.
