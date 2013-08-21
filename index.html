@@ -6,7 +6,7 @@
     <meta name="description" content="A web interface for MQTT">
     <meta name="author" content="Fabian Affolter">
 
-    <title>Door conditions</title>
+    <title>Home conditions</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -19,12 +19,11 @@
             socket.on('connect', function () {
                 socket.on('mqtt', function (msg) {
                     var message = msg.topic.split('/');
-                    var element = message[0];
                     var area = message[1];
+                    //console.log(msg.topic, msg.payload);
 
                     $('#topic').html(msg.topic);
                     $('#message').html(msg.topic + ', ' + msg.payload);
-
                     switch (area) {
                         case 'front': 
                             $('#value1').html('Switch value: ' + msg.payload);
@@ -34,12 +33,6 @@
                             } else {
                                 $('#label1').text('Open');
                                 $('#label1').removeClass('label-success').addClass('label-danger');
-                            }
-
-                            if (msg.payload == 'true') {
-                                $('#val1').text(msg.payload);
-                            } else {
-                                $('#val1').text('');
                             }
                             break;
                         case 'back':
@@ -52,30 +45,15 @@
                                 $('#label2').removeClass('label-success').addClass('label-danger');
                             }
                             break;
-                        case 'garage':
-                            $('#value3').html('Switch value: ' + msg.payload);
-                            if (msg.payload == 'true') {
-                                $('#label3').text('Closed');
-                                $('#label3').removeClass('label-danger').addClass('label-success');
-                            } else {
-                                $('#label3').text('Open');
-                                $('#label3').removeClass('label-success').addClass('label-danger');
-                            }
+                        case 'living':
+                            $('#value5').html('Sensor value: ' + msg.payload);
+                            $('#label5').text(msg.payload);
+                            $('#label5').removeClass('label-danger').addClass('label-primary');
                             break;
-                        case 'basement':
-                            $('#value4').html('Switch value: ' + msg.payload);
-                            if (msg.payload == 'true') {
-                                $('#label4').text('Closed');
-                                $('#label4').removeClass('label-danger').addClass('label-success');
-                            } else {
-                                $('#label4').text('Open');
-                                $('#label4').removeClass('label-success').addClass('label-danger');
-                            }
-                            break;
-                        default: console.log('default'); break;
+                        default: console.log('Error: There are no data on MQTT.'); break;
                     }
          });
-         socket.emit('subscribe', {topic : 'doors/#'});
+         socket.emit('subscribe', {topic : 'home/#'});
         });
     </script>
   </head>
@@ -83,14 +61,14 @@
   <body>
     <div id="wrap">
       <div class="container">
-        <div class="page-header"><h1><b>Door conditions</b></h1></div>
+        <div class="page-header"><h1><b>Home conditions</b></h1></div>
 
             <div class="panel panel-default">
               <div class="panel-body">
                     <table class="table table-striped">
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Front door</h3><small id="value1">no value recieved</small></td>
-                        <td style="vertical-align:middle;"><b id="val1">no message recieved</b></td>
+                        <td style="vertical-align:middle;"></td>
                         <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label1" class="label">Unknown</span></h4></td>
                         </tr>
                         <tr>
@@ -99,14 +77,9 @@
                         <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label2" class="label">Unknown</span></h4></td>
                         </tr>
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h3>Garage door</h3><small id="value3">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Living room</h3><small id="value5">no value recieved</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label3" class="label">Unknown</span></h4></td>
-                        </tr>
-                        <tr>
-                        <td width="40%" style="vertical-align:middle;"><h3>Basement door</h3><small id="value4">no value recieved</small></td>
-                        <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label4" class="label">Unknown</span></h4></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label5" class="label">Unknown</span></h4></td>
                         </tr>
                     </table>
               </div>
