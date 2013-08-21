@@ -3,7 +3,7 @@
 A simple web interface which is able to subscribe to a MQTT topic and display
 the information. 
 
-![screenshot](screentshot.png)
+![screenshot](https://raw.github.com/fabaff/mqtt-panel/master/screenshot.png)
 
 The web page is using [bootstrap](http://getbootstrap.com/).
 
@@ -13,6 +13,17 @@ The web page is using [bootstrap](http://getbootstrap.com/).
 Clone the `mqtt-panel` [repository](https://github.com/fabaff/mqtt-panel)
 ```
 git clone git@github.com:fabaff/mqtt-panel.git
+```
+
+###Dependencies
+`mqtt-panel` depends on a couple of additional pieces: 
+
+- [node.js](http://www.nodejs.org/)
+- [mqtt](https://github.com/adamvr/MQTT.js/)
+- [socket.io](http://socket.io/)
+
+```
+npm install mqtt socket.io
 ```
 
 ### MQTT broker/server
