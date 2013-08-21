@@ -23,6 +23,7 @@ git clone git@github.com:fabaff/mqtt-panel.git
 - [node.js](http://www.nodejs.org/)
 - [mqtt](https://github.com/adamvr/MQTT.js/)
 - [socket.io](http://socket.io/)
+- [firmata](https://github.com/jgautier/firmata) if using with an Arduino
 
 ```
 npm install mqtt socket.io
@@ -43,6 +44,19 @@ A MQTT broker/server is needed to run on **localhost** on port **1883**.
 3. Start the `./test-messages.py` script to publish test messages if you have
    no other source for messages.
 4. Open `index.html` with your browser.
+
+For manually sending messages to your MQTT broker/server you can use 
+`mosquitto_pub` from `mosquitto`.
+
+```
+$ mosquitto_pub -h localhost -d -t home/front -m "false"
+```
+To check if the messages are are ok, subscribe to the topic **home/#** with 
+`mosquitto_sub`.
+
+```
+$ mosquitto_sub -h localhost -d -t home/#
+```
 
 ## Credits
 
