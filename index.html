@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web interface for MQTT">
+    <meta name="author" content="Fabian Affolter">
+
+    <title>Door conditions</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <!-- socket.io for communication -->
+    <script type="text/javascript" src="js/socket.io.min.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://localhost:3000');
+            socket.on('connect', function () {
+                socket.on('mqtt', function (msg) {
+                    var message = msg.topic.split('/');
+                    var topic = message[0];
+                    var component = message[1];
+
+                    $('#topic').html(msg.topic);
+                    $('#message').html(msg.topic + ', ' + msg.payload);
+
+                    switch (component) {
+                        case 'front': 
+                            $('#value1').html('Switch value: ' + msg.payload);
+                            if (msg.payload == "true") {
+                                $('#label1').text('Closed');
+                                $('#label1').removeClass('label-danger').addClass('label-success');
+                            } else {
+                                $('#label1').text('Open');
+                                $('#label1').removeClass('label-success').addClass('label-danger');
+                            }
+                            break;
+                        case 'back':
+                            $('#value2').html('Switch value: ' + msg.payload);
+                            if (msg.payload == "true") {
+                                $('#label2').text('Closed');
+                                $('#label2').removeClass('label-danger').addClass('label-success');
+                            } else {
+                                $('#label2').text('Open');
+                                $('#label2').removeClass('label-success').addClass('label-danger');
+                            }
+                            break;
+                        case 'garage':
+                            $('#value3').html('Switch value: ' + msg.payload);
+                            if (msg.payload == "true") {
+                                $('#label3').text('Closed');
+                                $('#label3').removeClass('label-danger').addClass('label-success');
+                            } else {
+                                $('#label3').text('Open');
+                                $('#label3').removeClass('label-success').addClass('label-danger');
+                            }
+                            break;
+                        case 'basement':
+                            $('#value4').html('Switch value: ' + msg.payload);
+                            if (msg.payload == "true") {
+                                $('#label4').text('Closed');
+                                $('#label4').removeClass('label-danger').addClass('label-success');
+                            } else {
+                                $('#label4').text('Open');
+                                $('#label4').removeClass('label-success').addClass('label-danger');
+                            }
+                            break;
+                        default: console.log('default'); break;
+                    }
+         });
+         socket.emit('subscribe', {topic : 'doors/#'});
+        });
+    </script>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        <div class="page-header"><h1><b>Door conditions</b></h1></div>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                        <td width="40%" style="vertical-align:middle;"><h2>Front door</h2><small id="value1">no value recieved</small></td>
+                        <td style="vertical-align:middle;"></td>
+                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label1" class="label">Unknown</span></h3></td>
+                        </tr>
+                        <tr>
+                        <td width="40%" style="vertical-align:middle;"><h2>Back door</h2><small id="value2">no value recieved</small></td>
+                        <td style="vertical-align:middle;"></td>
+                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label2" class="label">Unknown</span></h3></td>
+                        </tr>
+                        <tr>
+                        <td width="40%" style="vertical-align:middle;"><h2>Garage door</h2><small id="value3">no value recieved</small></td>
+                        <td style="vertical-align:middle;"></td>
+                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label3" class="label">Unknown</span></h3></td>
+                        </tr>
+                        <tr>
+                        <td width="40%" style="vertical-align:middle;"><h2>Basement door</h2><small id="value4">no value recieved</small></td>
+                        <td style="vertical-align:middle;"></td>
+                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label4" class="label">Unknown</span></h3></td>
+                        </tr>
+                    </table>
+              </div>
+            </div>
+
+        </div>
+        <div class="footer">
+        <small><p class="text-center">&copy; <a href="http://affolter-engineering.ch">Affolter Engineering</a> 2013</p></small>
+    </div>      
+  </body>
+</html>
