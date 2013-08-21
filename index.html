@@ -19,26 +19,32 @@
             socket.on('connect', function () {
                 socket.on('mqtt', function (msg) {
                     var message = msg.topic.split('/');
-                    var topic = message[0];
-                    var component = message[1];
+                    var element = message[0];
+                    var area = message[1];
 
                     $('#topic').html(msg.topic);
                     $('#message').html(msg.topic + ', ' + msg.payload);
 
-                    switch (component) {
+                    switch (area) {
                         case 'front': 
                             $('#value1').html('Switch value: ' + msg.payload);
-                            if (msg.payload == "true") {
+                            if (msg.payload == 'true') {
                                 $('#label1').text('Closed');
                                 $('#label1').removeClass('label-danger').addClass('label-success');
                             } else {
                                 $('#label1').text('Open');
                                 $('#label1').removeClass('label-success').addClass('label-danger');
                             }
+
+                            if (msg.payload == 'true') {
+                                $('#val1').text(msg.payload);
+                            } else {
+                                $('#val1').text('');
+                            }
                             break;
                         case 'back':
                             $('#value2').html('Switch value: ' + msg.payload);
-                            if (msg.payload == "true") {
+                            if (msg.payload == 'true') {
                                 $('#label2').text('Closed');
                                 $('#label2').removeClass('label-danger').addClass('label-success');
                             } else {
@@ -48,7 +54,7 @@
                             break;
                         case 'garage':
                             $('#value3').html('Switch value: ' + msg.payload);
-                            if (msg.payload == "true") {
+                            if (msg.payload == 'true') {
                                 $('#label3').text('Closed');
                                 $('#label3').removeClass('label-danger').addClass('label-success');
                             } else {
@@ -58,7 +64,7 @@
                             break;
                         case 'basement':
                             $('#value4').html('Switch value: ' + msg.payload);
-                            if (msg.payload == "true") {
+                            if (msg.payload == 'true') {
                                 $('#label4').text('Closed');
                                 $('#label4').removeClass('label-danger').addClass('label-success');
                             } else {
@@ -83,24 +89,24 @@
               <div class="panel-body">
                     <table class="table table-striped">
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h2>Front door</h2><small id="value1">no value recieved</small></td>
-                        <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label1" class="label">Unknown</span></h3></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Front door</h3><small id="value1">no value recieved</small></td>
+                        <td style="vertical-align:middle;"><b id="val1">no message recieved</b></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label1" class="label">Unknown</span></h4></td>
                         </tr>
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h2>Back door</h2><small id="value2">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Back door</h3><small id="value2">no value recieved</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label2" class="label">Unknown</span></h3></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label2" class="label">Unknown</span></h4></td>
                         </tr>
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h2>Garage door</h2><small id="value3">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Garage door</h3><small id="value3">no value recieved</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label3" class="label">Unknown</span></h3></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label3" class="label">Unknown</span></h4></td>
                         </tr>
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h2>Basement door</h2><small id="value4">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Basement door</h3><small id="value4">no value recieved</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h3>&nbsp;<span id="label4" class="label">Unknown</span></h3></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label4" class="label">Unknown</span></h4></td>
                         </tr>
                     </table>
               </div>
