@@ -12,9 +12,12 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- jQuery -->
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <!-- Sparkline -->
+    <script type="text/javascript" src="js/jquery.sparkline.min.js"></script>
     <!-- socket.io for communication -->
     <script type="text/javascript" src="js/socket.io.min.js"></script>
     <script type="text/javascript">
+        var temp2 = new Array();
         var socket = io.connect('http://localhost:3000');
             socket.on('connect', function () {
                 socket.on('mqtt', function (msg) {
@@ -69,9 +72,18 @@
                             } else if (msg.payload <= 12) {
                                     $('#basementTempLabel').text(msg.payload + '°C - too low');
                                     $('#basementTempLabel').removeClass('label-danger label-warning label-success label-info').addClass('label-primary');
+                            temp2.push(parseInt(msg.payload));
+                            if (temp2.length >= 20) {
+                                temp2.shift()
+                            }
+
+                            $('.basementTempSparkline').sparkline(temp2, {
+                                type: 'line',
+                                width: '160',
+                                height: '40'});
                             }
                             break;
-                        default: console.log('Error: There are no data on MQTT.'); break;
+                        default: console.log('Error: Data do not match the MQTT topic.'); break;
                     }
          });
          socket.emit('subscribe', {topic : 'home/#'});
@@ -108,7 +120,7 @@
                         <!-- Basement temperature -->
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Basement temperature</h3><small id="basementTempSensor">(no value recieved)</small></td>
-                        <td style="vertical-align:middle;"></td>
+                        <td style="vertical-align:middle;"><span class="basementTempSparkline"></span></td>
                         <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="basementTempLabel" class="label">Unknown</span></h4></td>
                         </tr>
                     </table>
