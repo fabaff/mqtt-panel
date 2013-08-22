@@ -43,26 +43,36 @@ mqttclient.on('message', function(topic, payload) {
 //    board.pinMode(0, board.MODES.INPUT);
 //    board.pinMode(1, board.MODES.INPUT);
 //    board.pinMode(2, board.MODES.INPUT);
-//    board.pinMode(3, board.MODES.INPUT);
+//    board.pinMode(5, board.MODES.INPUT);
 
 //    // Analog pin 0
 //    var oldVal1;
 //    board.analogRead(0, function(val) {
 //        // Reduce the amount of messages
 //        if (val != oldVal1 && val != oldVal1 + 1 && val != oldVal1 - 1) {
-//            mqttclient.publish('home/living', String(val));
+//            mqttclient.publish('home/living/temp', String(val));
+//        }
+//        oldVal1 = val;
+//    });
+
+//    // Analog pin 5
+//    var oldVal1;
+//    board.analogRead(5, function(val) {
+//        // Reduce the amount of messages
+//        if (val != oldVal1 && val != oldVal1 + 1 && val != oldVal1 - 1) {
+//            mqttclient.publish('home/basement/temp', String(val));
 //        }
 //        oldVal1 = val;
 //    });
 
 //    // Digital pin 2
 //    board.digitalRead(2, function(val) {
-//        mqttsend('home/front', val);
+//        mqttsend('home/front/door', val);
 //    });
 
 //    // Digital pin 3
 //    board.digitalRead(3, function(val) {
-//        mqttsend('home/back', val);
+//        mqttsend('home/back/door', val);
 //    });
 //});
 
