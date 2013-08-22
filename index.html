@@ -20,13 +20,14 @@
                 socket.on('mqtt', function (msg) {
                     var message = msg.topic.split('/');
                     var area = message[1];
+                    var state = message[2];
                     //console.log(msg.topic, msg.payload);
 
                     $('#topic').html(msg.topic);
                     $('#message').html(msg.topic + ', ' + msg.payload);
                     switch (area) {
                         case 'front': 
-                            $('#value1').html('Switch value: ' + msg.payload);
+                            $('#value1').html('(Switch value: ' + msg.payload + ')');
                             if (msg.payload == 'true') {
                                 $('#label1').text('Closed');
                                 $('#label1').removeClass('label-danger').addClass('label-success');
@@ -36,7 +37,7 @@
                             }
                             break;
                         case 'back':
-                            $('#value2').html('Switch value: ' + msg.payload);
+                            $('#value2').html('(Switch value: ' + msg.payload + ')');
                             if (msg.payload == 'true') {
                                 $('#label2').text('Closed');
                                 $('#label2').removeClass('label-danger').addClass('label-success');
@@ -46,9 +47,29 @@
                             }
                             break;
                         case 'living':
-                            $('#value5').html('Sensor value: ' + msg.payload);
-                            $('#label5').text(msg.payload);
-                            $('#label5').removeClass('label-danger').addClass('label-primary');
+                            $('#livingTempSensor').html('(Sensor value: ' + msg.payload + ')');
+                            $('#livingTempLabel').text(msg.payload + '°C');
+                            $('#livingTempLabel').removeClass('').addClass('label-default');
+                            break;
+                        case 'basement':
+                            $('#basementTempSensor').html('(Sensor value: ' + msg.payload + ')');
+
+                            if (msg.payload >= 25) {
+                                    $('#basementTempLabel').text(msg.payload + '°C - too hot');
+                                    $('#basementTempLabel').removeClass('label-warning label-success label-info label-primary').addClass('label-danger');
+                            } else if (msg.payload >= 21) {
+                                    $('#basementTempLabel').text(msg.payload + '°C - hot');
+                                    $('#basementTempLabel').removeClass('label-danger label-success label-info label-primary').addClass('label-warning');
+                            } else if (msg.payload >= 18) {
+                                    $('#basementTempLabel').text(msg.payload + '°C - normal');
+                                    $('#basementTempLabel').removeClass('label-danger label-warning label-info label-primary').addClass('label-success');
+                            } else if (msg.payload >= 15) {
+                                    $('#basementTempLabel').text(msg.payload + '°C - low');
+                                    $('#basementTempLabel').removeClass('label-danger label-warning label-success label-primary').addClass('label-info');
+                            } else if (msg.payload <= 12) {
+                                    $('#basementTempLabel').text(msg.payload + '°C - too low');
+                                    $('#basementTempLabel').removeClass('label-danger label-warning label-success label-info').addClass('label-primary');
+                            }
                             break;
                         default: console.log('Error: There are no data on MQTT.'); break;
                     }
@@ -66,20 +87,29 @@
             <div class="panel panel-default">
               <div class="panel-body">
                     <table class="table table-striped">
+                        <!-- Entrace door -->
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h3>Front door</h3><small id="value1">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Entrance</h3><small id="value1">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"></td>
                         <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label1" class="label">Unknown</span></h4></td>
                         </tr>
+                        <!-- Back door -->
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h3>Back door</h3><small id="value2">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Back door</h3><small id="value2">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"></td>
                         <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label2" class="label">Unknown</span></h4></td>
                         </tr>
+                        <!-- Living room temperature -->
                         <tr>
-                        <td width="40%" style="vertical-align:middle;"><h3>Living room</h3><small id="value5">no value recieved</small></td>
+                        <td width="40%" style="vertical-align:middle;"><h3>Living room temperature</h3><small id="livingTempSensor">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label5" class="label">Unknown</span></h4></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="livingTempLabel" class="label">Unknown</span></h4></td>
+                        </tr>
+                        <!-- Basement temperature -->
+                        <tr>
+                        <td width="40%" style="vertical-align:middle;"><h3>Basement temperature</h3><small id="basementTempSensor">(no value recieved)</small></td>
+                        <td style="vertical-align:middle;"></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="basementTempLabel" class="label">Unknown</span></h4></td>
                         </tr>
                     </table>
               </div>
