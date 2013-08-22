@@ -12,15 +12,20 @@ import mosquitto
 broker = '127.0.0.1'
 port = 1883
 element = 'home'
-areas = ['front', 'back', 'garage', 'basement']
+areas = ['front', 'back', 'kitchen', 'basement', 'living']
 states = ['true', 'false']
 
 print 'Messages are published on topic %s/#... -> CTRL + C to shutdown' \
     % element
 
 while True:
-    topic = element + '/' + random.choice(areas)
-    message = random.choice(states)
+    area = random.choice(areas)
+    if (area in ['basement', 'living']):
+        topic = element + '/' + area + '/temp'
+        message = random.randrange(0, 30, 1)
+    else:
+        topic = element + '/' + area + '/door'
+        message = random.choice(states)
 
     client = mosquitto.Mosquitto("mqtt-panel-test")
     client.connect(broker)
