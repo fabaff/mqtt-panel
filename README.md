@@ -7,7 +7,8 @@ the information.
 
 What to see `mqtt-panel` in action -> http://youtu.be/Qb0UJa9kf2g
 
-The web page is using [bootstrap](http://getbootstrap.com/).
+The web page is using [bootstrap](http://getbootstrap.com/) with 
+[jQuery](http://jquery.com/).
 
 ## Prerequisites/Installation
 
@@ -49,7 +50,7 @@ For manually sending messages to your MQTT broker/server you can use
 `mosquitto_pub` from `mosquitto`.
 
 ```
-$ mosquitto_pub -h localhost -d -t home/front -m "false"
+$ mosquitto_pub -h localhost -d -t home/front/door -m "false"
 ```
 To check if the messages are are ok, subscribe to the topic **home/#** with 
 `mosquitto_sub`.
