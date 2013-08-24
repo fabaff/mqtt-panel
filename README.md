@@ -3,6 +3,8 @@
 A simple web interface which is able to subscribe to a MQTT topic and display
 the information. 
 
+The screenshot show an example how to keep track an apartment or house.
+
 ![screenshot](https://raw.github.com/fabaff/mqtt-panel/master/screenshot.png)
 
 What to see `mqtt-panel` in action -> http://youtu.be/Qb0UJa9kf2g
