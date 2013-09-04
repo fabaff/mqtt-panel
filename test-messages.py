@@ -9,6 +9,9 @@ import random
 import time
 import mosquitto
 
+timestamp = int(time.time())
+print timestamp
+
 broker = '127.0.0.1'
 port = 1883
 element = 'home'
