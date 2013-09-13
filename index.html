@@ -14,10 +14,18 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <!-- Sparkline -->
     <script type="text/javascript" src="js/jquery.sparkline.min.js"></script>
+    <!-- jgPlot -->
+    <link class="include" rel="stylesheet" type="text/css" href="dist/jquery.jqplot.min.css" />
+    <script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.dateAxisRenderer.min.js"></script>
+
     <!-- socket.io for communication -->
     <script type="text/javascript" src="js/socket.io.min.js"></script>
     <script type="text/javascript">
-        var temp2 = new Array();
+        var livingTemp = new Array();
+        var basementTemp = new Array();
         var socket = io.connect('http://localhost:3000');
             socket.on('connect', function () {
                 socket.on('mqtt', function (msg) {
@@ -25,6 +33,7 @@
                     var area = message[1];
                     var state = message[2];
                     //console.log(msg.topic, msg.payload);
+                    var timestamp = Math.round((new Date()).getTime() / 1000);
 
                     $('#topic').html(msg.topic);
                     $('#message').html(msg.topic + ', ' + msg.payload);
@@ -53,6 +62,51 @@
                             $('#livingTempSensor').html('(Sensor value: ' + msg.payload + ')');
                             $('#livingTempLabel').text(msg.payload + '°C');
                             $('#livingTempLabel').removeClass('').addClass('label-default');
+
+                            var entry = new Array();
+                            entry.push(timestamp);
+                            entry.push(parseInt(msg.payload));
+                            livingTemp.push(entry);
+                            // Show only 20 values
+                            if (livingTemp.length >= 20) {
+                                livingTemp.shift()
+                            }
+
+                            var livingTempPlot = $.jqplot ('livingTempChart', [livingTemp], {
+                                axesDefaults: {
+                                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                                    tickOptions: {
+                                        showMark: false,
+                                        showGridline: false,
+                                        show: false,
+                                        showLabel: false,
+                                    }
+                                  },
+                                grid: {
+                                    gridLineColor: '#FFFFFF',
+                                    borderWidth: 0,
+                                    shadow: false,
+                                },
+                                seriesDefaults: {
+                                    rendererOptions: {
+                                        smooth: true
+                                    },
+                                    showMarker: false,
+                                    lineWidth: 2,
+                                  },
+                                  axes: {
+                                    xaxis: {
+                                      renderer:$.jqplot.DateAxisRenderer,
+                                      tickOptions:{
+                                        formatString:'%T'
+                                      },
+                                      pad: 0
+                                    },
+                                    yaxis: {
+                                    }
+                                }
+                            });
+
                             break;
                         case 'basement':
                             $('#basementTempSensor').html('(Sensor value: ' + msg.payload + ')');
@@ -72,12 +126,12 @@
                             } else if (msg.payload <= 12) {
                                     $('#basementTempLabel').text(msg.payload + '°C - too low');
                                     $('#basementTempLabel').removeClass('label-danger label-warning label-success label-info').addClass('label-primary');
-                            temp2.push(parseInt(msg.payload));
-                            if (temp2.length >= 20) {
-                                temp2.shift()
+                            basementTemp.push(parseInt(msg.payload));
+                            if (basementTemp.length >= 20) {
+                                basementTemp.shift()
                             }
 
-                            $('.basementTempSparkline').sparkline(temp2, {
+                            $('.basementTempSparkline').sparkline(basementTemp, {
                                 type: 'line',
                                 width: '160',
                                 height: '40'});
@@ -89,6 +143,7 @@
          socket.emit('subscribe', {topic : 'home/#'});
         });
     </script>
+
   </head>
 
   <body>
@@ -114,7 +169,7 @@
                         <!-- Living room temperature -->
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Living room temperature</h3><small id="livingTempSensor">(no value recieved)</small></td>
-                        <td style="vertical-align:middle;"></td>
+                        <td style="vertical-align:middle;"><div id="livingTempChart" style="height:80px; width:180px;"></div></td>
                         <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="livingTempLabel" class="label">Unknown</span></h4></td>
                         </tr>
                         <!-- Basement temperature -->
@@ -131,8 +186,9 @@
                     <b>Latest MQTT message:  </b> <small id="message">no message recieved</small>
             </div>
           </div>
+
         <div class="footer">
         <small><p class="text-center">&copy; <a href="http://affolter-engineering.ch">Affolter Engineering</a> 2013</p></small>
-    </div>      
+    </div>
   </body>
 </html>
