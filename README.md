@@ -31,7 +31,7 @@ git clone git@github.com:fabaff/mqtt-panel.git
 - [firmata](https://github.com/jgautier/firmata) if using with an Arduino
 
 ```
-npm install mqtt socket.io sqlite
+npm install mqtt socket.io
 ```
 
 ### MQTT broker/server
