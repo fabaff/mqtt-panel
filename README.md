@@ -30,8 +30,16 @@ git clone git@github.com:fabaff/mqtt-panel.git
 - [socket.io](http://socket.io/)
 - [firmata](https://github.com/jgautier/firmata) if using with an Arduino
 
+If you are using Fedora, just use `yum` to install `node`.
+
 ```
-npm install mqtt socket.io
+$ sudo yum -y install node npm
+``` 
+
+then
+
+```
+$ npm install mqtt socket.io
 ```
 
 ### MQTT broker/server
