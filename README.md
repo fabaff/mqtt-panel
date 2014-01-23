@@ -65,7 +65,7 @@ $ mosquitto_sub -h localhost -d -t home/#
 
 ## Credits
 
-`mqtt-panel` was insired by the ideas of:
+`mqtt-panel` was inspired by the ideas of:
 
 * [mqtt-svg-dash](https://github.com/jpmens/mqtt-svg-dash) by [Jan-Piet Mens](http://jpmens.net/)
 * [Robert Hekkers](http://blog.hekkers.net/2012/10/13/realtime-data-with-mqtt-node-js-mqtt-js-and-socket-io/)
