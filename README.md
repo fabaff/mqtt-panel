@@ -30,8 +30,16 @@ git clone git@github.com:fabaff/mqtt-panel.git
 - [socket.io](http://socket.io/)
 - [firmata](https://github.com/jgautier/firmata) if using with an Arduino
 
+If you are using Fedora, just use `yum` to install `node`.
+
 ```
-npm install mqtt socket.io sqlite
+$ sudo yum -y install node npm mosquitto-python
+``` 
+
+then
+
+```
+$ npm install mqtt socket.io
 ```
 
 ### MQTT broker/server
@@ -47,7 +55,7 @@ A MQTT broker/server is needed to run on **localhost** on port **1883**.
 2. Launch `./runner.sh` which will start the node server incl. the web socket 
    on port 3000.
 3. Start the `./test-messages.py` script to publish test messages if you have
-   no other source for messages.
+   no other source for messages. This requires the Python bindings of mosquitto.
 4. Open `index.html` with your browser.
 
 For manually sending messages to your MQTT broker/server you can use 
