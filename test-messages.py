@@ -30,7 +30,7 @@ while True:
         topic = element + '/' + area + '/' + random.choice(entrances)
         message = random.choice(states)
 
-    mqttclient = mqtt.Client("mqtt-panel-test")
+    mqttclient = mqtt.Client("mqtt-panel-test", protocol=mqtt.MQTTv311)
     mqttclient.connect(broker, port=int(port))
     mqttclient.publish(topic, message)
     time.sleep(2)
