@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Copyright (c) 2013-2014, Fabian Affolter <fabian@affolter-engineering.ch>
+ * Copyright (c) 2013-2016, Fabian Affolter <fabian@affolter-engineering.ch>
  * Released under the MIT license. See LICENSE file for details.
  */
 
