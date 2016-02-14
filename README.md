@@ -18,6 +18,7 @@ The web page is using [bootstrap](http://getbootstrap.com/) with
 
 ### Get the files
 Clone the `mqtt-panel` [repository](https://github.com/fabaff/mqtt-panel)
+
 ```
 git clone git@github.com:fabaff/mqtt-panel.git
 ```
@@ -25,15 +26,16 @@ git clone git@github.com:fabaff/mqtt-panel.git
 ###Dependencies
 `mqtt-panel` depends on a couple of additional pieces: 
 
+- [paho-mqtt](https://www.eclipse.org/paho/clients/python/)
 - [node.js](http://www.nodejs.org/)
 - [mqtt](https://github.com/adamvr/MQTT.js/)
 - [socket.io](http://socket.io/)
 - [firmata](https://github.com/jgautier/firmata) if using with an Arduino
 
-If you are using Fedora, just use `yum` to install `node`.
+If you are using Fedora, just use `dnf` to install `node`.
 
 ```
-$ sudo yum -y install node npm mosquitto-python
+$ sudo dnf -y install node npm python-paho-mqtt
 ``` 
 
 then
@@ -45,18 +47,23 @@ $ npm install mqtt socket.io
 ### MQTT broker/server
 A MQTT broker/server is needed to run on **localhost** on port **1883**. 
 
+- [hbmqtt](https://github.com/beerfactory/hbmqtt) - MQTT broker with build-in
+  websockets capabilities
 - [mosca](http://mcollina.github.io/mosca/) - A multi-transport MQTT broker
   for node.js
-- [mosquitto](http://mosquitto.org/) - An Open Source MQTT v3.1 Broker
+- [mosquitto](http://mosquitto.org/) - An Open Source MQTT v3.1 broker
 
 ## Running mqtt-panel
 
-1. Make sure that your MQTT broker/server is running and listening.
+1. Make sure that your MQTT broker/server is running and listening. Use
+   `./server-mqtt.py` for the websockets example or setup your MQTT broker
+   for websockets support.
 2. Launch `./runner.sh` which will start the node server incl. the web socket 
    on port 3000.
 3. Start the `./test-messages.py` script to publish test messages if you have
-   no other source for messages. This requires the Python bindings of mosquitto.
-4. Open `index.html` with your browser.
+   no other source for messages.
+4. Open `index.html` for the node version or `index-ws.html` for the websockets 
+   with your browser.
 
 For manually sending messages to your MQTT broker/server you can use 
 `mosquitto_pub` from `mosquitto`.
@@ -64,6 +71,7 @@ For manually sending messages to your MQTT broker/server you can use
 ```
 $ mosquitto_pub -h localhost -d -t home/front/door -m "false"
 ```
+
 To check if the messages are are ok, subscribe to the topic **home/#** with 
 `mosquitto_sub`.
 
