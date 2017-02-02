@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # 
-# Copyright (c) 2015-2016, Fabian Affolter <fabian@affolter-engineering.ch>
+# Copyright (c) 2015-2017, Fabian Affolter <fabian@affolter-engineering.ch>
 # Released under the MIT license. See LICENSE file for details.
 #
 # Source: https://github.com/beerfactory/hbmqtt/blob/develop/samples/broker_start.py
