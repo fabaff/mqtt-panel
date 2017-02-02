@@ -24,14 +24,14 @@ $ git clone git@github.com:fabaff/mqtt-panel.git
 ```
 
 ### Dependencies
-`mqtt-panel` depends on a couple of additional pieces: 
+`mqtt-panel` is using the listed projects to provide its functionality: 
 
 - [paho-mqtt](https://www.eclipse.org/paho/clients/python/)
-- [node.js](http://www.nodejs.org/)
 - [mqtt](https://github.com/adamvr/MQTT.js/)
 - [socket.io](http://socket.io/)
 
-If you are using Fedora, just use `dnf` to install `node`.
+If you are using Fedora and want to generate MQTT messages, install the 
+`paho-mqtt` Python bindings.
 
 ```
 $ sudo dnf -y install python-paho-mqtt
@@ -72,7 +72,7 @@ $ npm install mqtt socket.io
 ```
 
 1. Launch `./runner.sh` which will start the node server on port 3000 for the
-   standard node.js example.
+   standard [node.js](http://www.nodejs.org/) example.
 2. Adjust `var host = '127.0.0.1';` and `var port = 3000;` in the file
    `index.html` to match your setup.
 3. Open `index-node.html` with your browser.
