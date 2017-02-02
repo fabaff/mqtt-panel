@@ -56,7 +56,7 @@ A MQTT broker/server is needed to run on **localhost** on port **1883**.
 ## Running mqtt-panel
 
 1. Make sure that your MQTT broker/server is running and listening. Use
-   `./server-mqtt.py` for the websockets example or setup your MQTT broker
+   `./mqtt-server.py` for the websockets example or setup your MQTT broker
    for websockets support.
 2. Launch `./runner.sh` which will start the node server incl. the web socket 
    on port 3000.
