@@ -20,7 +20,7 @@ The web page is using [bootstrap](http://getbootstrap.com/) with
 Clone the `mqtt-panel` [repository](https://github.com/fabaff/mqtt-panel)
 
 ```
-git clone git@github.com:fabaff/mqtt-panel.git
+$ git clone git@github.com:fabaff/mqtt-panel.git
 ```
 
 ###Dependencies
@@ -58,8 +58,8 @@ A MQTT broker/server is needed to run on **localhost** on port **1883**.
 1. Make sure that your MQTT broker/server is running and listening. Use
    `./mqtt-server.py` for the websockets example or setup your MQTT broker
    for websockets support.
-2. Launch `./runner.sh` which will start the node server incl. the web socket 
-   on port 3000.
+2. Launch `./runner.sh` which will start the node server on port 3000 for the
+   standard node.js example.
 3. Start the `./test-messages.py` script to publish test messages if you have
    no other source for messages.
 4. Open `index.html` for the node version or `index-ws.html` for the websockets 
@@ -71,6 +71,12 @@ For manually sending messages to your MQTT broker/server you can use
 ```
 $ mosquitto_pub -h localhost -d -t home/front/door -m "false"
 ```
+For the websockets example, you need to specifiy the MQTT version.
+
+```
+$ mosquitto_pub -V mqttv311 -d -t home/front/door -m "true"
+```
+
 
 To check if the messages are are ok, subscribe to the topic **home/#** with 
 `mosquitto_sub`.
