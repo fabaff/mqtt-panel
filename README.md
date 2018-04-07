@@ -37,8 +37,7 @@ $ sudo dnf -y install python-paho-mqtt
 ``` 
 
 ### MQTT broker/server
-A MQTT broker/server is needed to run on **localhost** on port **3000** and 
-providing websocket support. 
+A MQTT broker/server with Websocket support is needed. 
 
 - [hbmqtt](https://github.com/beerfactory/hbmqtt) - MQTT broker with build-in
   websockets capabilities
@@ -49,10 +48,10 @@ providing websocket support.
 ## Running mqtt-panel
 
 1. Make sure that your MQTT broker/server is running and listening. Or run
-   `./mqtt-server.py` to use `mqtt-panel` with [hbmqtt](https://github.com/beerfactory/hbmqtt)
+   `python3 mqtt-server.py` to use `mqtt-panel` with [hbmqtt](https://github.com/beerfactory/hbmqtt)
    (make sure that you installed it with `pip3 install hbmqtt`).
 2. Adjust `var host = '127.0.0.1';` and `var port = 3000;` in the file
-   `index.html` to match your setup.
+   `index.html` to match your setup if you are not using `mqtt-server.py`.
 3. Open `index.html`.
 
 ## Generate MQTT messages
