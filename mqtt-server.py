@@ -1,13 +1,15 @@
 #!/usr/bin/python3
-# 
-# Copyright (c) 2015-2017, Fabian Affolter <fabian@affolter-engineering.ch>
-# Released under the MIT license. See LICENSE file for details.
-#
-# Source: https://github.com/beerfactory/hbmqtt/blob/develop/samples/broker_start.py
-#
-import logging
+""""
+Running HBMQTT as MQTT broker.
+
+Copyright (c) 2015-2018, Fabian Affolter <fabian@affolter-engineering.ch>
+Released under the MIT license. See LICENSE file for details.
+
+Source: https://github.com/beerfactory/hbmqtt/blob/develop/samples/broker_start.py
+"""
 import asyncio
-import os
+import logging
+
 from hbmqtt.broker import Broker
 
 logger = logging.getLogger(__name__)
@@ -28,9 +30,11 @@ config = {
 
 broker = Broker(config)
 
+
 @asyncio.coroutine
 def test_coro():
     yield from broker.start()
+
 
 if __name__ == '__main__':
     formatter = "[%(asctime)s] :: %(levelname)s :: %(name)s :: %(message)s"
