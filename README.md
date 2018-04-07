@@ -28,7 +28,6 @@ $ git clone git@github.com:fabaff/mqtt-panel.git
 
 - [paho-mqtt](https://www.eclipse.org/paho/clients/python/)
 - [mqtt](https://github.com/adamvr/MQTT.js/)
-- [socket.io](http://socket.io/)
 
 If you are using Fedora and want to generate MQTT messages, install the 
 `paho-mqtt` Python bindings.
