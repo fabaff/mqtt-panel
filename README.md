@@ -56,27 +56,6 @@ providing websocket support.
    `index.html` to match your setup.
 3. Open `index.html`.
 
-
-## Running mqtt-panel with node.js
-
-If you are using Fedora, just use `dnf` to install `node`.
-
-```
-$ sudo dnf -y install node npm
-``` 
-
-then
-
-```
-$ npm install mqtt socket.io
-```
-
-1. Launch `./runner.sh` which will start the node server on port 3000 for the
-   standard [node.js](http://www.nodejs.org/) example.
-2. Adjust `var host = '127.0.0.1';` and `var port = 3000;` in the file
-   `index.html` to match your setup.
-3. Open `index-node.html` with your browser.
-
 ## Generate MQTT messages
 
 Start the `./test-messages.py` script to publish test messages if you have
