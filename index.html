@@ -32,14 +32,10 @@
         var reconnectTimeout = 2000;
 
         function MQTTconnect() {
-	    if (typeof path == "undefined") {
-		    path = '/mqtt';
-	    }
-	    mqtt = new Paho.MQTT.Client(
-			    host,
-			    port,
-			    path,
-			    "mqtt_panel" + parseInt(Math.random() * 100, 10)
+	        if (typeof path == "undefined") {
+		        path = '/mqtt';
+	        }
+	        mqtt = new Paho.MQTT.Client(host, port, path, "mqtt_panel" + parseInt(Math.random() * 100, 10)
 	    );
             var options = {
                 timeout: 3,
