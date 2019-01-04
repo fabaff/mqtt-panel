@@ -17,13 +17,15 @@ The web page is using [bootstrap](http://getbootstrap.com/) with
 ## Prerequisites/Installation
 
 ### Get the files
+
 Clone the `mqtt-panel` [repository](https://github.com/fabaff/mqtt-panel)
 
-```
+```bash
 $ git clone git@github.com:fabaff/mqtt-panel.git
 ```
 
 ### Dependencies
+
 `mqtt-panel` is using the listed projects to provide its functionality: 
 
 - [paho-mqtt](https://www.eclipse.org/paho/clients/python/)
@@ -32,11 +34,12 @@ $ git clone git@github.com:fabaff/mqtt-panel.git
 If you are using Fedora and want to generate MQTT messages, install the 
 `paho-mqtt` Python bindings.
 
-```
+```bash
 $ sudo dnf -y install python-paho-mqtt
-``` 
+```
 
 ### MQTT broker/server
+
 A MQTT broker/server with Websocket support is needed. 
 
 - [hbmqtt](https://github.com/beerfactory/hbmqtt) - MQTT broker with build-in
@@ -63,14 +66,14 @@ the supported version. On line 33: `protocol=mqtt.MQTTv311`
 For manually sending messages to your MQTT broker/server you can use 
 `mosquitto_pub` from `mosquitto` or `hbmqtt_pub`.
 
-```
+```bash
 $ mosquitto_pub -V mqttv311 -h localhost -d -t home/front/door -m "false"
 ```
 
 To check if the messages are are ok, subscribe to the topic **home/#** with 
 `mosquitto_sub`.
 
-```
+```bash
 $ mosquitto_sub -V mqttv311 -h localhost -d -t home/#
 ```
 
@@ -82,4 +85,5 @@ $ mosquitto_sub -V mqttv311 -h localhost -d -t home/#
 * [Robert Hekkers](http://blog.hekkers.net/2012/10/13/realtime-data-with-mqtt-node-js-mqtt-js-and-socket-io/)
 
 ## License
+
 `mqtt-panel` licensed under MIT, for more details check LICENSE.
