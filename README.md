@@ -4,14 +4,14 @@ A simple web interface which is able to subscribe to a MQTT topic and display
 the information. 
 
 The screenshot shows an example how to keep track on what's going in your
-apartment or your house. It's not about controlling, this setup is about 
+apartment or your house. It's not about controlling, this setup is about
 observing various states.
 
 ![screenshot](https://raw.github.com/fabaff/mqtt-panel/master/screenshot.png)
 
 What to see `mqtt-panel` in action -> http://youtu.be/Qb0UJa9kf2g
 
-The web page is using [bootstrap](http://getbootstrap.com/) with 
+The web page is using [bootstrap](http://getbootstrap.com/) with
 [jQuery](http://jquery.com/).
 
 ## Prerequisites/Installation
@@ -26,12 +26,12 @@ $ git clone git@github.com:fabaff/mqtt-panel.git
 
 ### Dependencies
 
-`mqtt-panel` is using the listed projects to provide its functionality: 
+`mqtt-panel` is using the listed projects to provide its functionality:
 
 - [paho-mqtt](https://www.eclipse.org/paho/clients/python/)
 - [mqtt](https://github.com/adamvr/MQTT.js/)
 
-If you are using Fedora and want to generate MQTT messages, install the 
+If you are using Fedora and want to generate MQTT messages, install the
 `paho-mqtt` Python bindings.
 
 ```bash
@@ -70,7 +70,7 @@ For manually sending messages to your MQTT broker/server you can use
 $ mosquitto_pub -V mqttv311 -h localhost -d -t home/front/door -m "false"
 ```
 
-To check if the messages are are ok, subscribe to the topic **home/#** with 
+To check if the messages are are ok, subscribe to the topic **home/#** with
 `mosquitto_sub`.
 
 ```bash
