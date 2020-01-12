@@ -2,7 +2,7 @@
 # 
 # test-messages.py - This script publish a random MQTT messages every 2 s.
 #
-# Copyright (c) 2013-2017, Fabian Affolter <fabian@affolter-engineering.ch>
+# Copyright (c) 2013-2020, Fabian Affolter <fabian@affolter-engineering.ch>
 # Released under the MIT license. See LICENSE file for details.
 #
 import random
