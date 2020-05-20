@@ -50,9 +50,7 @@ A MQTT broker/server with Websocket support is needed.
 
 ## Running mqtt-panel
 
-1. Make sure that your MQTT broker/server is running and listening. Or run
-   `python3 mqtt-server.py` to use `mqtt-panel` with [hbmqtt](https://github.com/beerfactory/hbmqtt)
-   (make sure that you installed it with `pip3 install hbmqtt`).
+1. Make sure that your MQTT broker/server is running and listening.
 2. Adjust `var host = '127.0.0.1';` and `var port = 3000;` in the file
    `index.html` to match your setup if you are not using `mqtt-server.py`.
 3. Open `index.html`.
@@ -64,7 +62,7 @@ no other source for messages. Depending on your broker you may need to set
 the supported version. On line 33: `protocol=mqtt.MQTTv311`
 
 For manually sending messages to your MQTT broker/server you can use 
-`mosquitto_pub` from `mosquitto` or `hbmqtt_pub`.
+`mosquitto_pub` from `mosquitto`.
 
 ```bash
 $ mosquitto_pub -V mqttv311 -h localhost -d -t home/front/door -m "false"
