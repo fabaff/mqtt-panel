@@ -32,7 +32,7 @@ $ git clone git@github.com:fabaff/mqtt-panel.git
 - [mqtt](https://github.com/adamvr/MQTT.js/)
 
 If you are using Fedora and want to generate MQTT messages, install the
-`paho-mqtt` Python bindings.
+`paho-mqtt` Python bindings for `test-messages.py`.
 
 ```bash
 $ sudo dnf -y install python-paho-mqtt
@@ -42,24 +42,25 @@ $ sudo dnf -y install python-paho-mqtt
 
 A MQTT broker/server with Websocket support is needed.
 
+- [mosquitto](http://mosquitto.org/) - An Open Source MQTT v3.1/3.11 broker
 - [mosca](http://mcollina.github.io/mosca/) - A multi-transport MQTT broker
-  for node.js
-- [mosquitto](http://mosquitto.org/) - An Open Source MQTT v3.1 broker
+  for node.js (Project seems abandoned)
 
 ## Running mqtt-panel
 
 1. Make sure that your MQTT broker/server is running and listening.
 2. Adjust `var host = '127.0.0.1';` and `var port = 3000;` in the file
-   `index.html` to match your setup if you are not using `mqtt-server.py`.
-3. Open `index.html`.
+   `index.html` to match your setup. Also, `var topic = '#';`.
+3. Open `index.html` in a modern web browser.
 
 ## Generate MQTT messages
 
 Start the `./test-messages.py` script to publish test messages if you have
 no other source for messages. Depending on your broker you may need to set
-the supported version. On line 33: `protocol=mqtt.MQTTv311`
+the supported version, on line 33: `protocol=mqtt.MQTTv311` and adjust
+the broker and its port.
 
-For manually sending messages to your MQTT broker/server you can use 
+For manually sending messages to your MQTT broker/server you can use
 `mosquitto_pub` from `mosquitto`.
 
 ```bash
