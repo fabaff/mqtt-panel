@@ -40,10 +40,8 @@ $ sudo dnf -y install python-paho-mqtt
 
 ### MQTT broker/server
 
-A MQTT broker/server with Websocket support is needed. 
+A MQTT broker/server with Websocket support is needed.
 
-- [hbmqtt](https://github.com/beerfactory/hbmqtt) - MQTT broker with build-in
-  websockets capabilities
 - [mosca](http://mcollina.github.io/mosca/) - A multi-transport MQTT broker
   for node.js
 - [mosquitto](http://mosquitto.org/) - An Open Source MQTT v3.1 broker
@@ -79,8 +77,8 @@ $ mosquitto_sub -V mqttv311 -h localhost -d -t home/#
 
 `mqtt-panel` was inspired by the ideas of:
 
-* [mqtt-svg-dash](https://github.com/jpmens/mqtt-svg-dash) by [Jan-Piet Mens](http://jpmens.net/)
-* [Robert Hekkers](http://blog.hekkers.net/2012/10/13/realtime-data-with-mqtt-node-js-mqtt-js-and-socket-io/)
+- [mqtt-svg-dash](https://github.com/jpmens/mqtt-svg-dash) by [Jan-Piet Mens](http://jpmens.net/)
+- [Robert Hekkers](http://blog.hekkers.net/2012/10/13/realtime-data-with-mqtt-node-js-mqtt-js-and-socket-io/)
 
 ## License
 
