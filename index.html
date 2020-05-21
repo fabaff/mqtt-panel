@@ -9,9 +9,9 @@
     <title>Home conditions</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- jQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Sparkline -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
     <!-- jgPlot -->
@@ -23,7 +23,7 @@
     <!-- MQTT Websocket -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.js"></script>
     <script type="text/javascript">
-        var host = '127.0.0.1';
+        var host = 'localhost';
         var port = 3000;
         var topic = '#';
         var useTLS = false;
@@ -33,7 +33,7 @@
 
         function MQTTconnect() {
 	        if (typeof path == "undefined") {
-		        path = '/mqtt';
+		        path = '/';
 	        }
 	        mqtt = new Paho.MQTT.Client(host, port, path, "mqtt_panel" + parseInt(Math.random() * 100, 10)
 	    );
@@ -68,7 +68,7 @@
         function onMessageArrived(message) {
             var topic = message.destinationName;
             var payload = message.payloadString;
-            //console.log("Topic: " + topic + ", Message payload: " + payload);
+            console.log("Topic: " + topic + ", Message payload: " + payload);
             $('#message').html(topic + ', ' + payload);
             var message = topic.split('/');
             var area = message[1];
@@ -80,25 +80,25 @@
                     $('#value1').html('(Switch value: ' + payload + ')');
                     if (payload == 'true') {
                         $('#label1').text('Closed');
-                        $('#label1').removeClass('label-danger').addClass('label-success');
+                        $('#label1').removeClass('badge-danger').addClass('badge-success');
                     } else {
                         $('#label1').text('Open');
-                        $('#label1').removeClass('label-success').addClass('label-danger');
+                        $('#label1').removeClass('badge-success').addClass('badge-danger');
                     }
                     break;
                 case 'back':
                     $('#value2').html('(Switch value: ' + payload + ')');
                     if (payload == 'true') {
                         $('#label2').text('Closed');
-                        $('#label2').removeClass('label-danger').addClass('label-success');
+                        $('#label2').removeClass('badge-danger').addClass('badge-success');
                     } else {
                         $('#label2').text('Open');
-                        $('#label2').removeClass('label-success').addClass('label-danger');
+                        $('#label2').removeClass('badge-success').addClass('badge-danger');
                     }
                     break;
               case 'living':
                     $('#livingTempSensor').html('(Sensor value: ' + payload + ')');
-                    $('#livingTempLabel').text(payload + '°C');
+                    $('#livingTempLabel').text(payload + ' °C');
                     $('#livingTempLabel').removeClass('').addClass('label-default');
 
                     var entry = new Array();
@@ -148,20 +148,20 @@
                 case 'basement':
                     $('#basementTempSensor').html('(Sensor value: ' + payload + ')');
                     if (payload >= 25) {
-                            $('#basementTempLabel').text(payload + '°C - too hot');
-                            $('#basementTempLabel').removeClass('label-warning label-success label-info label-primary').addClass('label-danger');
+                            $('#basementTempLabel').text(payload + ' °C - too hot');
+                            $('#basementTempLabel').removeClass('badge-warning badge-success badge-info badge-primary').addClass('badge-danger');
                     } else if (payload >= 21) {
-                            $('#basementTempLabel').text(payload + '°C - hot');
-                            $('#basementTempLabel').removeClass('label-danger label-success label-info label-primary').addClass('label-warning');
+                            $('#basementTempLabel').text(payload + ' °C - hot');
+                            $('#basementTempLabel').removeClass('badge-danger badge-success badge-info badge-primary').addClass('badge-warning');
                     } else if (payload >= 18) {
-                            $('#basementTempLabel').text(payload + '°C - normal');
-                            $('#basementTempLabel').removeClass('label-danger label-warning label-info label-primary').addClass('label-success');
+                            $('#basementTempLabel').text(payload + ' °C - normal');
+                            $('#basementTempLabel').removeClass('badge-danger badge-warning badge-info badge-primary').addClass('badge-success');
                     } else if (payload >= 15) {
-                            $('#basementTempLabel').text(payload + '°C - low');
-                            $('#basementTempLabel').removeClass('label-danger label-warning label-success label-primary').addClass('label-info');
+                            $('#basementTempLabel').text(payload + ' °C - low');
+                            $('#basementTempLabel').removeClass('badge-danger badge-warning badge-success badge-primary').addClass('badge-info');
                     } else if (mpayload <= 12) {
-                            $('#basementTempLabel').text(payload + '°C - too low');
-                            $('#basementTempLabel').removeClass('label-danger label-warning label-success label-info').addClass('label-primary');
+                            $('#basementTempLabel').text(payload + ' °C - too low');
+                            $('#basementTempLabel').removeClass('badge-danger badge-warning badge-success badge-info').addClass('badge-primary');
                     basementTemp.push(parseInt(payload));
                     if (basementTemp.length >= 20) {
                         basementTemp.shift()
@@ -183,11 +183,10 @@
 
   </head>
 
-  <body>
+  <body style="margin-top: 30px;">
     <div id="wrap">
-      <div class="container">
-        <div class="page-header"><h1><b>Home conditions</b></h1></div>
-
+      <div class="container mt-10">
+        <div class="header"><h1>Home conditions</h1></div>
             <div class="panel panel-default">
               <div class="panel-body">
                     <table class="table table-striped">
@@ -195,25 +194,25 @@
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Entrance</h3><small id="value1">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label1" class="label">Unknown</span></h4></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label1" class="badge">Unknown</span></h4></td>
                         </tr>
                         <!-- Back door -->
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Back door</h3><small id="value2">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label2" class="label">Unknown</span></h4></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="label2" class="badge">Unknown</span></h4></td>
                         </tr>
                         <!-- Living room temperature -->
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Living room temperature</h3><small id="livingTempSensor">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"><div id="livingTempChart" style="height:80px; width:180px;"></div></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="livingTempLabel" class="label">Unknown</span></h4></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="livingTempLabel" class="badge">Unknown</span></h4></td>
                         </tr>
                         <!-- Basement temperature -->
                         <tr>
                         <td width="40%" style="vertical-align:middle;"><h3>Basement temperature</h3><small id="basementTempSensor">(no value recieved)</small></td>
                         <td style="vertical-align:middle;"><span class="basementTempSparkline"></span></td>
-                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="basementTempLabel" class="label">Unknown</span></h4></td>
+                        <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="basementTempLabel" class="badge">Unknown</span></h4></td>
                         </tr>
                     </table>
               </div>
@@ -227,7 +226,7 @@
           </div>
         </div>
       <div class="footer">
-        <small><p class="text-center">&copy; <a href="http://affolter-engineering.ch">Affolter Engineering</a> 2013 - 2020</p></small>
+        <small><p class="text-center" style="margin-top: 30px;">&copy; <a href="http://affolter-engineering.ch">affolter engineering</a> 2013 - 2020</p></small>
     </div>
   </body>
 </html>
