@@ -1,6 +1,6 @@
-# mqtt-panel
+# mqtt-panel (Message Queuing Telemetry Transport panel)
 
-A simple web interface which is able to subscribe to a MQTT topic and display
+A simple web interface which is able to subscribe to a MQTT Topic and display
 the information.
 
 The screenshot shows an example how to keep track on what's going in your
