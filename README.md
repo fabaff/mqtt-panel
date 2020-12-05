@@ -7,7 +7,7 @@ The screenshot shows an example how to keep track on what's going in your
 apartment or your house. It's not about controlling, this setup is about
 observing various states.
 
-![screenshot](https://raw.github.com/fabaff/mqtt-panel/master/screenshot.png)
+![screenshot](screenshot.png)
 
 What to see `mqtt-panel` in action -> http://youtu.be/Qb0UJa9kf2g
 
