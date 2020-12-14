@@ -50,7 +50,7 @@ A MQTT broker/server with Websocket support is needed.
 
 1. Make sure that your MQTT broker/server is running and listening.
 2. Adjust `var host = '127.0.0.1';` and `var port = 3000;` in the file
-   `index.html` to match your setup. Also, `var topic = '#';`.
+   `js/index.js` to match your setup. Also, `var topic = '#';`.
 3. Open `index.html` in a modern web browser.
 
 ## Generate MQTT messages
