@@ -1,3 +1,8 @@
+/*
+  Copyright (c) 2013-2024 Fabian Affolter <fabian@affolter-engineering.ch>
+  Licensed under MIT
+*/
+
 let host = 'localhost';
 let port = 9001;
 let topic = '#';
