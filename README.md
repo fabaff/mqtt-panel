@@ -86,3 +86,5 @@ $ mosquitto_sub -V mqttv311 -h localhost -d -t home/#
 ## License
 
 `mqtt-panel` licensed under MIT, for more details check LICENSE.
+
+[<img src="https://api.gitsponsors.com/api/badge/img?id=12266054" height="20">](https://api.gitsponsors.com/api/badge/link?p=M6YTOZpYXP5QfsPAcN1WtmnR/9FlFvvvgQYfQqMphoMpvSh1C43xI0XfwhRdZIzwx5Mbs3mx0IwI07LJNavLAKAotPy8H0jqAncqnOp6C5Fd+InHBtZEe/EOPXhfz33lPgATBee2EgCeAfYuguiEyQ==)
