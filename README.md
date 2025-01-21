@@ -1,3 +1,5 @@
+[<img src="https://api.gitsponsors.com/api/badge/img?id=12266054" height="20">](https://api.gitsponsors.com/api/badge/link?p=M6YTOZpYXP5QfsPAcN1WtjxBeUMoAYG1hSbALWg+0ACRLfuU00JzAshil3XKiVKDCWmq8GYaEA1Y0KMUMbow+NBX0Y9Pi41tgCFXM9FerKn/dyzHyrXl5KFh0xDcLA5R)
+
 # mqtt-panel
 
 A simple web interface which is able to subscribe to a MQTT topic and display
