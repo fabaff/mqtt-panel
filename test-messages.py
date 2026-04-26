@@ -12,7 +12,7 @@ import paho.mqtt.client as mqtt
 timestamp = int(time.time())
 
 broker = "127.0.0.1"
-port = 1883
+port = 9001
 element = "home"
 areas = ["front", "back", "kitchen", "basement", "living"]
 entrances = ["door", "window"]
@@ -29,7 +29,7 @@ while True:
         topic = element + "/" + area + "/" + random.choice(entrances)
         message = random.choice(states)
 
-    mqtt_client = mqtt.Client("mqtt-panel-test", protocol=mqtt.MQTTv311)
+    mqtt_client = mqtt.Client("mqtt-panel-test", transport='websockets')
     mqtt_client.connect(broker, port=int(port))
     mqtt_client.publish(topic, message)
     time.sleep(2)
